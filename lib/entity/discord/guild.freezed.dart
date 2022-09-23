@@ -22,7 +22,7 @@ Guild _$GuildFromJson(Map<String, dynamic> json) {
 mixin _$Guild {
   GuildId get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get icon => throw _privateConstructorUsedError;
+  String? get icon => throw _privateConstructorUsedError;
   bool get owner => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ mixin _$Guild {
 abstract class $GuildCopyWith<$Res> {
   factory $GuildCopyWith(Guild value, $Res Function(Guild) then) =
       _$GuildCopyWithImpl<$Res>;
-  $Res call({GuildId id, String name, String icon, bool owner});
+  $Res call({GuildId id, String name, String? icon, bool owner});
 }
 
 /// @nodoc
@@ -64,7 +64,7 @@ class _$GuildCopyWithImpl<$Res> implements $GuildCopyWith<$Res> {
       icon: icon == freezed
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$_GuildCopyWith<$Res> implements $GuildCopyWith<$Res> {
   factory _$$_GuildCopyWith(_$_Guild value, $Res Function(_$_Guild) then) =
       __$$_GuildCopyWithImpl<$Res>;
   @override
-  $Res call({GuildId id, String name, String icon, bool owner});
+  $Res call({GuildId id, String name, String? icon, bool owner});
 }
 
 /// @nodoc
@@ -109,7 +109,7 @@ class __$$_GuildCopyWithImpl<$Res> extends _$GuildCopyWithImpl<$Res>
       icon: icon == freezed
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -136,7 +136,7 @@ class _$_Guild extends _Guild with DiagnosticableTreeMixin {
   @override
   final String name;
   @override
-  final String icon;
+  final String? icon;
   @override
   final bool owner;
 
@@ -193,7 +193,7 @@ abstract class _Guild extends Guild {
   const factory _Guild(
       {required final GuildId id,
       required final String name,
-      required final String icon,
+      required final String? icon,
       required final bool owner}) = _$_Guild;
   const _Guild._() : super._();
 
@@ -204,7 +204,7 @@ abstract class _Guild extends Guild {
   @override
   String get name;
   @override
-  String get icon;
+  String? get icon;
   @override
   bool get owner;
   @override

@@ -9,10 +9,18 @@ class DiscordResourceUser extends _DiscordResourceBase {
   Future<UserId> _getUser(String ident) async {
     final json = await _get(path: '/users/$ident');
     final isCurrentUser = ident == '@me';
-    final id = UserPod.store(_read, json, isCurrentUser: isCurrentUser);
+    final accountId = isCurrentUser ? null : _service.currentUserId;
+    final id = UserPod.store(_read, accountId, json);
     if (isCurrentUser) {
       _service.currentUserId = id;
     }
     return id;
+  }
+
+  Future<List<GuildId>> getCurrentUserGuilds() async {
+    final json = await _get(path: '/users/@me/guilds');
+    final ids = GuildPod.storeAll(_read, _service.currentUserId, json);
+    _service._currentGuildIds = ids;
+    return ids;
   }
 }

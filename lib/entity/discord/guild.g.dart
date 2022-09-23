@@ -9,7 +9,7 @@ part of 'guild.dart';
 _$_Guild _$$_GuildFromJson(Map<String, dynamic> json) => _$_Guild(
       id: GuildId.fromJson(json['id'] as String),
       name: json['name'] as String,
-      icon: json['icon'] as String,
+      icon: json['icon'] as String?,
       owner: json['owner'] as bool,
     );
 

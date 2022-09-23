@@ -18,16 +18,16 @@ class Guild with _$Guild {
   const factory Guild({
     required GuildId id,
     required String name,
-    required String icon,
+    required String? icon,
     required bool owner,
   }) = _Guild;
 
-  String get iconUrl => '${ConstUrl.cdn}icons/$id/$icon.webp';
+  String? get iconUrl => icon != null ?'${ConstUrl.cdn}icons/$id/$icon.webp': null;
 
   static const dummy = Guild(
     id: GuildId('0'),
     name: 'なぞのばしょ',
-    icon: '',
+    icon: null,
     owner: false,
   );
 

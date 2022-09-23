@@ -42,6 +42,7 @@ class LoginPage extends ConsumerWidget {
         await service.initalize(ref.read);
         ref.read(AccountState.accountsProvider.notifier).add(service);
         await config.addToken(token.refreshToken!);
+        await config.setSelectedAccount(service.currentUserId);
         await navigator.pushReplacement(MaterialPageRoute(
           builder: (context) => const HomePage(),
         ));

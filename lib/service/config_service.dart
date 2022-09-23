@@ -1,6 +1,9 @@
 // Package imports:
 import 'package:shared_preferences/shared_preferences.dart';
 
+// Project imports:
+import 'package:fuwa/entity/discord/id.dart';
+
 class ConfigService {
   late final SharedPreferences _prefs;
 
@@ -27,6 +30,12 @@ class ConfigService {
         .map((token) => token == oldToken ? newToken : token)
         .toList();
     return _prefs.setStringList('tokens', tokens);
+  }
+
+  UserId get selectedAccount => UserId(_prefs.getString('selected_account')!);
+
+  Future<bool> setSelectedAccount(UserId id) {
+    return _prefs.setString('selected_account', id.id);
   }
 
   SharedPreferences get prefs => _prefs;

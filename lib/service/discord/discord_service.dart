@@ -7,6 +7,7 @@ import 'package:oauth2_client/oauth2_client.dart';
 // Project imports:
 import 'package:fuwa/constant/env.dart';
 import 'package:fuwa/entity/discord/id.dart';
+import 'package:fuwa/pod/guild_pod.dart';
 import 'package:fuwa/pod/user_pod.dart';
 
 part 'discord_resource_user.dart';
@@ -47,12 +48,13 @@ class DiscordService {
   DateTime _expiredDate;
 
   late final UserId currentUserId;
+  late List<GuildId> _currentGuildIds;
+  List<GuildId> get currentGuildIds => _currentGuildIds;
 
   Future<void> initalize(Reader read) async {
     await _checkRefresh();
-    await Future.wait([
-      resourceUser(read).getCurrentUser(),
-    ]);
+    await resourceUser(read).getCurrentUser();
+    await resourceUser(read).getCurrentUserGuilds();
   }
 
   DiscordResourceUser resourceUser(Reader read) =>
